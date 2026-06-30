@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TUNNED PISTON delivers premium motorcycle tuning, custom builds, performance parts and bike sales in Coimbatore." />
+  <meta name="theme-color" content="#04192c" />
   <title>TUNNED PISTON | Performance Motorcycles</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #050815;
+      --bg: #04192c;
       --surface: rgba(8, 16, 34, 0.92);
-      --surface-strong: rgba(7, 13, 28, 0.98);
-      --surface-soft: rgba(255, 255, 255, 0.07);
-      --text: #edf5ff;
-      --muted: #9fb8d6;
-      --accent: #3ce3ff;
-      --accent-soft: rgba(60, 227, 255, 0.16);
-      --border: rgba(255, 255, 255, 0.10);
+      --surface-strong: rgba(4, 10, 22, 0.98);
+      --surface-soft: rgba(255, 255, 255, 0.08);
+      --text: #f4f8ff;
+      --muted: #b8c7e8;
+      --accent: #f6c969;
+      --accent-soft: rgba(246, 201, 105, 0.16);
+      --border: rgba(255, 255, 255, 0.12);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       scroll-behavior: smooth;
     }
@@ -27,17 +29,40 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background: radial-gradient(circle at top, rgba(255, 122, 24, 0.08), transparent 25%),
-        linear-gradient(180deg, #090909 0%, #060606 45%, #070707 100%);
+      max-width: 100vw;
+      background: radial-gradient(circle at top, rgba(246, 201, 105, 0.08), transparent 24%),
+        linear-gradient(180deg, #020714 0%, #04162a 40%, #04192c 100%);
       color: var(--text);
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
     body {
       overflow-x: hidden;
     }
 
-    img {
+    img,
+    video,
+    iframe {
       max-width: 100%;
+      display: block;
+    }
+
+    .logo,
+    .nav-actions {
+      min-width: 0;
+    }
+
+    .product-image img,
+    .gallery-image img,
+    .featured-video-media img,
+    .review-card img,
+    .about-photo img,
+    .happy-photo-card img,
+    .lightbox-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -64,13 +89,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 76px;
+      gap: 18px;
+      min-height: 76px;
     }
 
     .logo {
       display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
       color: var(--text);
       font-weight: 700;
       letter-spacing: 0.18em;
@@ -81,6 +108,15 @@
 
     .logo span {
       color: var(--text);
+      letter-spacing: 0.24em;
+    }
+
+    .logo-sub {
+      font-size: 0.74rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .site-logo {
@@ -126,6 +162,8 @@
       display: flex;
       gap: 12px;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .btn-primary,
@@ -142,10 +180,10 @@
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #080808;
+      background: linear-gradient(135deg, #f6c969 0%, #f4dd97 100%);
+      color: #08131c;
       font-weight: 700;
-      box-shadow: 0 18px 45px rgba(255, 122, 24, 0.15);
+      box-shadow: 0 18px 45px rgba(246, 201, 105, 0.24);
     }
 
     .instagram-cta {
@@ -167,8 +205,9 @@
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.08);
       color: var(--text);
+      border-color: rgba(246, 201, 105, 0.16);
     }
 
     .btn-primary:hover,
@@ -352,6 +391,7 @@
       color: var(--muted);
       line-height: 1.8;
       font-size: 1.05rem;
+      max-width: 680px;
     }
 
     .hero-actions {
@@ -413,7 +453,7 @@
     }
 
     .hero-image .badge-core {
-      width: min(320px, 82%);
+      width: min(390px, 90%);
       aspect-ratio: 1;
       border-radius: 50%;
       background: rgba(5, 8, 18, 0.88);
@@ -425,10 +465,255 @@
     }
 
     .hero-image .badge-core img {
-      width: 72%;
+      width: 88%;
       height: auto;
       object-fit: contain;
       display: block;
+    }
+
+    .video-showcase {
+      display: grid;
+      gap: 28px;
+      padding-top: 12px;
+    }
+
+    .featured-video {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .featured-video-media {
+      position: relative;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+      min-height: 380px;
+      background: #000;
+    }
+
+    .featured-video-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 32px;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(0, 0, 0, 0.28);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      transition: background 0.25s ease;
+    }
+
+    .play-overlay:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .play-overlay span,
+    .card-play span {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(246, 201, 105, 0.95);
+      box-shadow: 0 18px 34px rgba(4, 8, 18, 0.3);
+      position: relative;
+    }
+
+    .play-overlay span::before,
+    .card-play span::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 15px;
+      width: 0;
+      height: 0;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 18px solid #08131c;
+    }
+
+    .featured-video-copy {
+      display: grid;
+      gap: 18px;
+      color: var(--text);
+    }
+
+    .featured-video-copy h3 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.02;
+    }
+
+    .featured-video-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    .video-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .video-card {
+      display: grid;
+      gap: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(246, 201, 105, 0.24);
+    }
+
+    .video-thumb {
+      position: relative;
+      min-height: 210px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-play {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(0, 0, 0, 0.24);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .video-card:hover .card-play,
+    .card-play:focus-visible {
+      opacity: 1;
+    }
+
+    .video-card-body {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+    }
+
+    .video-badge {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(246, 201, 105, 0.15);
+      color: #f8e7b2;
+      font-size: 0.83rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .video-card h4 {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.4;
+    }
+
+    .video-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .video-watch {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+      width: fit-content;
+    }
+
+    .video-lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 55;
+      padding: 24px;
+    }
+
+    .video-lightbox-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .video-lightbox-content {
+      width: min(100%, 1020px);
+      max-height: calc(100vh - 60px);
+      background: rgba(7, 12, 22, 0.98);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.55);
+      display: grid;
+      gap: 18px;
+    }
+
+    .video-lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .video-lightbox-header h3 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 1.9rem);
+    }
+
+    .video-lightbox-content video {
+      width: 100%;
+      height: min(480px, 60vh);
+      object-fit: contain;
+      background: #000;
+    }
+
+    .video-lightbox-close {
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
     }
 
     @keyframes rotateRing {
@@ -1255,6 +1540,214 @@
       }
     }
 
+    @media (max-width: 768px) {
+      html,
+      body,
+      header,
+      main,
+      section,
+      footer,
+      .layout-wrap,
+      nav {
+        max-width: 100vw;
+      }
+
+      .layout-wrap {
+        padding: 0 16px;
+      }
+
+      header {
+        padding: 0 8px;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 0.82rem;
+        align-items: center;
+        text-align: center;
+        max-width: 220px;
+        width: 100%;
+      }
+
+      .logo-sub {
+        font-size: 0.7rem;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.35;
+      }
+
+      .nav-actions {
+        width: auto;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .btn-secondary {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+
+      nav {
+        inset: calc(76px + 10px) 8px auto 8px;
+        width: calc(100% - 16px);
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      .menu-toggle {
+        width: 42px;
+        height: 42px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 0.95rem;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 50px;
+        padding-bottom: 30px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .hero-copy,
+      .hero-image {
+        width: 100%;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2rem, 9vw, 2.4rem);
+        line-height: 1.08;
+      }
+
+      .hero-copy p {
+        font-size: 0.98rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .hero-actions a {
+        width: 100%;
+      }
+
+      .hero-image {
+        min-height: 260px;
+        padding: 0;
+        transform: none;
+      }
+
+      .hero-image .hero-badge {
+        width: min(280px, 100%);
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+      }
+
+      .hero-image .badge-core {
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-image .badge-core img {
+        width: 72%;
+        height: auto;
+      }
+
+      .featured-video {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-video-media {
+        min-height: 220px;
+      }
+
+      .video-card {
+        min-height: auto;
+      }
+
+      .video-thumb {
+        min-height: 180px;
+      }
+
+      .product-grid,
+      .gallery,
+      .happy-gallery,
+      .review-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card {
+        min-height: auto;
+      }
+
+      .product-image {
+        min-height: 150px;
+        padding: 14px;
+      }
+
+      .product-image svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .gallery-card {
+        min-height: auto;
+      }
+
+      .gallery-image {
+        padding: 18px;
+      }
+
+      .happy-photo-card img {
+        aspect-ratio: 4 / 3;
+        height: auto;
+      }
+
+      .location-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .lightbox-content {
+        width: min(100%, 95vw);
+        max-height: calc(100vh - 50px);
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      footer {
+        padding: 26px 0 16px;
+      }
+    }
+
     @media (max-width: 640px) {
       .layout-wrap {
         padding: 0 18px;
@@ -1290,6 +1783,7 @@
     <div class="layout-wrap nav-inner">
       <a href="#home" class="logo">
         <span>TUNNED PISTON</span>
+        <span class="logo-sub">Performance tuning & custom builds</span>
       </a>
       <nav id="primaryNav" aria-label="Primary navigation">
         <div class="nav-links">
@@ -1330,7 +1824,7 @@
             <div class="badge-ring ring-outer"></div>
             <div class="badge-ring ring-inner"></div>
             <div class="badge-core">
-              <img src="hero-logo.jpg" alt="TUNNED PISTON logo" />
+              <img src="logo.jpg.png" alt="TUNNED PISTON logo" />
             </div>
           </div>
         </div>
@@ -1438,18 +1932,66 @@
         <p>From stock to sculpted speed machines. See how our modifications transform bikes into head-turning legends.</p>
       </div>
       <div class="gallery">
-        <article class="gallery-card" data-label="Before">
+        <article class="gallery-card" data-label="Video">
           <div class="gallery-image">
-            <video controls playsinline preload="metadata" aria-label="Before custom build video">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 1">
               <source src="WhatsApp Video 2026-06-05 at 1.34.28 PM.mp4" type="video/mp4" />
               Your browser does not support video playback.
             </video>
           </div>
         </article>
-        <article class="gallery-card" data-label="After">
+        <article class="gallery-card" data-label="Video">
           <div class="gallery-image">
-            <video controls playsinline preload="metadata" aria-label="After custom build video">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 2">
               <source src="WhatsApp Video 2026-06-05 at 1.34.35 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 3">
+              <source src="WhatsApp Video 2026-06-30 at 5.34.41 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 4">
+              <source src="WhatsApp Video 2026-06-30 at 5.40.48 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 5">
+              <source src="WhatsApp Video 2026-06-30 at 5.45.11 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 6">
+              <source src="WhatsApp Video 2026-06-30 at 5.49.18 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 7">
+              <source src="WhatsApp Video 2026-06-30 at 7.12.58 PM.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </div>
+        </article>
+        <article class="gallery-card" data-label="Video">
+          <div class="gallery-image">
+            <video controls playsinline preload="metadata" aria-label="Custom build video 8">
+              <source src="WhatsApp Video 2026-06-30 at 7.16.13 PM.mp4" type="video/mp4" />
               Your browser does not support video playback.
             </video>
           </div>
