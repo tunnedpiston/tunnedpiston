@@ -453,7 +453,7 @@
     }
 
     .hero-image .badge-core {
-      width: min(390px, 90%);
+      width: min(440px, 92%);
       aspect-ratio: 1;
       border-radius: 50%;
       background: rgba(5, 8, 18, 0.88);
@@ -465,7 +465,7 @@
     }
 
     .hero-image .badge-core img {
-      width: 88%;
+      width: 100%;
       height: auto;
       object-fit: contain;
       display: block;
@@ -1698,6 +1698,36 @@
       min-height: 140px;
     }
 
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .option-btn {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 18px 16px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+      font-weight: 700;
+      min-height: 58px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+
+    .option-btn:hover,
+    .option-btn:focus-visible,
+    .option-btn.active {
+      background: rgba(246, 201, 105, 0.14);
+      border-color: rgba(246, 201, 105, 0.24);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
     .submit-btn {
       border: none;
       padding: 16px 22px;
@@ -2349,12 +2379,14 @@
             <input type="text" id="name" name="name" placeholder="Your name" required />
           </div>
           <div class="field-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required />
-          </div>
-          <div class="field-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your bike, inquiry or desired modification" required></textarea>
+            <label>Inquiry Type</label>
+            <div class="option-grid" role="group" aria-label="Inquiry options">
+              <button type="button" class="option-btn" data-option="Bike Modification">Bike Modification</button>
+              <button type="button" class="option-btn" data-option="Spare Parts">Spare Parts</button>
+              <button type="button" class="option-btn" data-option="Sales">Sales</button>
+              <button type="button" class="option-btn" data-option="Accessories">Accessories</button>
+              <button type="button" class="option-btn" data-option="Other">Other</button>
+            </div>
           </div>
           <button type="submit" class="submit-btn">Send Inquiry</button>
         </form>
@@ -2566,12 +2598,30 @@
 
     const inquiryForm = document.getElementById('whatsappInquiryForm');
     if (inquiryForm) {
+      const optionButtons = inquiryForm.querySelectorAll('.option-btn');
+      let selectedOption = '';
+
+      optionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          optionButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          selectedOption = button.dataset.option || '';
+          const name = inquiryForm.querySelector('#name')?.value.trim();
+          const text = `Hi, I want to inquire about ${selectedOption}.\nName: ${name || 'N/A'}`;
+          const phone = '919080857237';
+          const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+          window.open(url, '_blank');
+        });
+      });
+
       inquiryForm.addEventListener('submit', event => {
         event.preventDefault();
         const name = inquiryForm.querySelector('#name')?.value.trim();
-        const email = inquiryForm.querySelector('#email')?.value.trim();
-        const message = inquiryForm.querySelector('#message')?.value.trim();
-        const text = `Hi, I want to inquire about my bike.\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+        if (!selectedOption) {
+          alert('Please select an option before sending your inquiry.');
+          return;
+        }
+        const text = `Hi, I want to inquire about ${selectedOption}.\nName: ${name || 'N/A'}`;
         const phone = '919080857237';
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank');
