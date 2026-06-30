@@ -238,7 +238,7 @@
     }
 
     .animate-fade-up {
-      transform: translateX(-28px);
+      transform: translateY(28px);
     }
 
     .section-title {
@@ -1133,19 +1133,29 @@
     }
 
     .happy-photo-card {
+      display: grid;
+      width: 100%;
       position: relative;
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(18, 20, 24, 0.88);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.20);
+      background: linear-gradient(180deg, rgba(18,20,24,0.92) 0%, rgba(12,14,18,0.96) 100%);
+      box-shadow: 0 28px 100px rgba(0, 0, 0, 0.24);
       cursor: pointer;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      appearance: none;
     }
 
-    .happy-photo-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255,255,255,0.16);
+    .happy-photo-card:hover,
+    .happy-photo-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(246, 201, 105, 0.24);
+      box-shadow: 0 32px 110px rgba(0, 0, 0, 0.3);
+      outline: 3px solid rgba(246, 201, 105, 0.35);
+      outline-offset: 2px;
     }
 
     .happy-photo-card img {
@@ -1181,6 +1191,15 @@
       font-weight: 700;
     }
 
+    .lightbox-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      padding: 24px;
+      overflow-y: auto;
+      max-height: calc(100vh - 210px);
+    }
+
     .lightbox-overlay {
       position: fixed;
       inset: 0;
@@ -1192,6 +1211,8 @@
       pointer-events: none;
       transition: opacity 0.25s ease;
       z-index: 50;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .lightbox-overlay.open {
@@ -1209,6 +1230,7 @@
       box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
       display: grid;
       gap: 20px;
+      max-width: 95vw;
     }
 
     .lightbox-header {
@@ -1272,6 +1294,16 @@
       gap: 10px;
       color: var(--muted);
       line-height: 1.7;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .feature-list li:hover {
+      transform: translateY(-2px);
+      border-color: rgba(246, 201, 105, 0.16);
     }
 
     .feature-list li::before {
@@ -1280,12 +1312,258 @@
       height: 8px;
       border-radius: 50%;
       background: var(--accent);
+      flex-shrink: 0;
     }
 
     .review-grid {
       display: grid;
       gap: 24px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .glass-card,
+    .category-card,
+    .gallery-card,
+    .contact-panel,
+    .inquiry-form,
+    .location-card,
+    .happy-photo-card {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s ease-out forwards;
+      animation-delay: 0.18s;
+    }
+
+    section {
+      padding: 110px 0;
+    }
+
+    section:not(.hero) {
+      position: relative;
+      z-index: 1;
+    }
+
+    section:not(.hero)::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 15, 0.88), rgba(4, 6, 11, 0.96));
+      pointer-events: none;
+      opacity: 1;
+      z-index: -1;
+    }
+
+    section:not(.hero) .layout-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    section:not(.hero) .section-title {
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 38px;
+      max-width: 860px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-title h2 {
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    .section-title p {
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    #about .about-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 1fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    #about .about-photo {
+      min-height: 440px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 36px 100px rgba(0, 0, 0, 0.24);
+    }
+
+    #about .about-copy {
+      display: grid;
+      gap: 24px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    #services .glass-grid {
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+      gap: 28px;
+    }
+
+    #services .glass-card {
+      min-height: 240px;
+    }
+
+    #services .service-icon {
+      width: 52px;
+      height: 52px;
+      font-size: 1.45rem;
+    }
+
+    #bikes {
+      background: rgba(5, 8, 13, 0.7);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 38px;
+    }
+
+    #bikes .section-title {
+      padding-bottom: 22px;
+      margin-bottom: 32px;
+    }
+
+    #bikes .instagram-cta {
+      display: flex;
+      justify-content: center;
+      padding: 18px 0 0;
+    }
+
+    #bikes .instagram-btn {
+      width: 100%;
+      max-width: 540px;
+      padding: 18px 28px;
+    }
+
+    #stores .category-grid {
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      gap: 26px;
+    }
+
+    #stores .category-card {
+      min-height: 240px;
+      padding: 32px;
+      background: rgba(17, 20, 26, 0.88);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 32px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2);
+    }
+
+    #gallery .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    #gallery .gallery-card {
+      min-height: 320px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.22);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    #gallery .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(246, 201, 105, 0.18);
+    }
+
+    #gallery .gallery-image {
+      padding: 18px;
+      min-height: 260px;
+    }
+
+    #gallery .gallery-card::after {
+      top: 20px;
+      right: 20px;
+      padding: 10px 14px;
+    }
+
+    #gallery .gallery + .feature-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+      gap: 32px;
+      align-items: start;
+      margin-top: 36px;
+    }
+
+    #gallery .feature-list {
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    #gallery .feature-list li {
+      margin: 0;
+    }
+
+    #contact .contact-grid {
+      grid-template-columns: minmax(320px, 1fr) minmax(420px, 1fr);
+      gap: 32px;
+    }
+
+    .contact-panel,
+    .inquiry-form {
+      padding: 36px;
+      border-radius: 36px;
+      background: rgba(12, 14, 18, 0.94);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.24);
+    }
+
+    .contact-panel h3,
+    .inquiry-form h3 {
+      margin: 0;
+    }
+
+    .field-group input,
+    .field-group textarea {
+      min-height: 56px;
+    }
+
+    #happy-customers .happy-gallery {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    #happy-customers .happy-photo-card {
+      min-height: 360px;
+      border-radius: 34px;
+    }
+
+    #happy-customers .happy-card-caption {
+      padding: 26px;
+    }
+
+    #location .location-card {
+      grid-template-columns: minmax(320px, 1fr) minmax(400px, 1fr);
+      gap: 32px;
+      padding: 40px;
+    }
+
+    .map-frame {
+      border-radius: 30px;
+    }
+
+    footer {
+      padding: 44px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(2, 4, 8, 0.35);
+    }
+
+    footer .layout-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      margin: 0;
     }
 
     .review-card {
@@ -1640,6 +1918,7 @@
       .hero-copy h1 {
         font-size: clamp(2rem, 9vw, 2.4rem);
         line-height: 1.08;
+        letter-spacing: -0.02em;
       }
 
       .hero-copy p {
@@ -1704,6 +1983,33 @@
 
       .product-card {
         min-height: auto;
+      }
+
+      #about .about-grid,
+      #services .glass-grid,
+      #stores .category-grid,
+      #gallery .gallery,
+      #contact .contact-grid,
+      #location .location-card {
+        grid-template-columns: 1fr;
+      }
+
+      #about .about-grid,
+      #services .glass-grid,
+      #stores .category-grid,
+      #gallery .gallery,
+      #contact .contact-grid,
+      #location .location-card {
+        gap: 24px;
+      }
+
+      #bikes,
+      #stores,
+      #gallery,
+      #contact,
+      #happy-customers,
+      #location {
+        border-radius: 0;
       }
 
       .product-image {
@@ -1774,6 +2080,23 @@
       .product-footer {
         flex-direction: column;
         align-items: stretch;
+      }
+
+      .happy-photo-card img {
+        min-height: 220px;
+        height: auto;
+      }
+
+      .happy-card-caption {
+        padding: 18px;
+      }
+
+      .lightbox-content {
+        max-height: calc(100vh - 40px);
+      }
+
+      .lightbox-grid {
+        max-height: calc(100vh - 180px);
       }
     }
   </style>
@@ -2044,14 +2367,14 @@
         <p>Click the card below to open customer build photos from our workshop.</p>
       </div>
       <div class="happy-gallery">
-        <article class="happy-photo-card" id="openGalleryCard" tabindex="0" role="button" aria-label="Open happy customers gallery">
+        <button class="happy-photo-card" id="openGalleryCard" type="button" aria-label="Open happy customers gallery" aria-controls="customerLightbox" aria-expanded="false">
           <img src="WhatsApp Image 2026-06-05 at 1.26.00 PM.jpeg" alt="Happy customer ride preview" />
           <div class="happy-card-caption">
             <h3>Customer Photo Gallery</h3>
             <p>Tap to open the gallery and view customer bikes, custom builds, and workshop work.</p>
             <span>Open gallery</span>
           </div>
-        </article>
+        </button>
       </div>
     </section>
 
@@ -2204,16 +2527,18 @@
     const lightboxClose = document.getElementById('lightboxClose');
 
     const openLightbox = () => {
-      if (!lightbox) return;
+      if (!lightbox || !galleryCard) return;
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
+      galleryCard.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     };
 
     const closeLightbox = () => {
-      if (!lightbox) return;
+      if (!lightbox || !galleryCard) return;
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
+      galleryCard.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     };
 
